@@ -1,14 +1,17 @@
 //Return a list of the target indices of nums after sorting nums in non-decreasing order. If there are no target indices, return an empty list. The returned list must be sorted in increasing order.
 
 function sort(arr:number[]):void{
-        for(let i = 0; i<arr.length; i++){
-            for(let j = 0; j < arr.length; j++) {
+    let noSwap:boolean = false
+        for(let i = arr.length; i>0; i--){
+            for(let j = 0; j < i-1; j++) {
                 if(arr[j] > arr[j+1]) {
                     const sort = arr[j]
                     arr[j] = arr[j+1]
                     arr[j+1] = sort
+                    noSwap = true
                 }
             }
+            if(noSwap) break
         }
     }
 
