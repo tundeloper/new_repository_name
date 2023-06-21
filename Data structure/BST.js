@@ -6,6 +6,7 @@ class Node {
     }
 }
 
+// Binary searxh tree
 class BST {
     constructor() {
         this.root = null
