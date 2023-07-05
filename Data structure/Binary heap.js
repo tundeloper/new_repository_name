@@ -22,6 +22,14 @@ class MaxBinaryHeap {
             index = parentIdx
         }
     }
+
+    extractMax() {
+        const max = this.val
+        const end = this.val.pop()
+        this.val[0] = end
+        // tikle down 
+        return max
+    }
 }
 
 // [41,39,33,18,27,12,55]
