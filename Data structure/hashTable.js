@@ -37,8 +37,8 @@ class HashTable {
         for (let i = 0; i < this.keyMap.length; i++) {
             if (this.keyMap[i]) {
                 for (let j = 0; j < this.keyMap[i].length; j++) {
-                    if (!this.keyMap.includes(this, this.keyMap[i][j][1])) {
-                        valueArr.push(this.keyMap[i][j][1 ])
+                    if (!this.keyMap.includes(this, this.keyMap[i][j][0])) {
+                        valueArr.push(this.keyMap[i][j][0])
                     }
                 }
             }  
@@ -51,7 +51,7 @@ class HashTable {
             if (this.keyMap[i]) {
                 for (let j = 0; j < this.keyMap[i].length; j++) {
                     if (!this.keyMap.includes(this, this.keyMap[i][j][1])) {
-                        kayArr.push(this.keyMap[i][j][1 ])
+                        kayArr.push(this.keyMap[i][j][1])
                     }
                 }
             }  
