@@ -1,4 +1,4 @@
-class Graph {
+class WeightedGraph {
     constructor() {
         this.adjacencyList = {};
     }
@@ -7,20 +7,20 @@ class Graph {
         if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
     }
 
-    addEdge(v1, v2) {
+    addEdge(v1, v2, weight) {
         if (this.adjacencyList.hasOwnProperty(v1) && this.adjacencyList.hasOwnProperty(v2)) {
-            this.adjacencyList[v1].push(v2)
-            this.adjacencyList[v2].push(v1)
+            this.adjacencyList[v1].push({node: v2, weight})
+            this.adjacencyList[v2].push({node: v1, weight})
             return true
-        } else {
+        } else { 
             throw Error("vertex is not in thier")
         }    
     }
 
     removeEdge(v1, v2) {
         if (this.adjacencyList.hasOwnProperty(v1) && this.adjacencyList.hasOwnProperty(v2)) { 
-            this.adjacencyList[v1] = this.adjacencyList[v1].filter(v => v !== v2)
-            this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v !== v1)
+            this.adjacencyList[v1] = this.adjacencyList[v1].filter(v => v.node !== v2)
+            this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v.node !== v1)
         }
     }
 
@@ -92,7 +92,7 @@ class Graph {
     }
 }
 
-let g = new Graph() 
+let g = new WeightedGraph() 
 g.addVertex("A") 
 g.addVertex("B")
 g.addVertex("C")
