@@ -58,7 +58,7 @@ class WeightedGraph {
         while (nodes.values.length) {
             smallest = nodes.dequeue()
             if (smallest === end) {
-                //Wea are done
+                //We are done
                 //Build up path to return at end
             }
             if (smallest || distances[smallest] !== Infinity) {
