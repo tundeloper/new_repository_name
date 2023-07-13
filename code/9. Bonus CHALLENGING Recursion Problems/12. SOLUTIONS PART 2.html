@@ -1,0 +1,69 @@
+<h4>Recursion <strong>CHALLENGE </strong>Problem Set Solutions Part 2</h4><p><strong>capitalizeWords Solution</strong></p><pre class="prettyprint linenums">function capitalizeWords (array) {
+  if (array.length === 1) {
+    return [array[0].toUpperCase()];
+  }
+  let res = capitalizeWords(array.slice(0, -1));
+  res.push(array.slice(array.length-1)[0].toUpperCase());
+  return res;
+
+}</pre><p><strong>nestedEvenSum Solution</strong></p><pre class="prettyprint linenums">function nestedEvenSum (obj, sum=0) {
+    for (var key in obj) {
+        if (typeof obj[key] === 'object'){
+            sum += nestedEvenSum(obj[key]);
+        } else if (typeof obj[key] === 'number' &amp;&amp; obj[key] % 2 === 0){
+            sum += obj[key];
+        }
+    }
+    return sum;
+}</pre><p><strong>capitalizeFire Solution</strong></p><pre class="prettyprint linenums">function capitalizeFirst (array) {
+  if (array.length === 1) {
+    return [array[0][0].toUpperCase() + array[0].substr(1)];
+  }
+  const res = capitalizeFirst(array.slice(0, -1));
+  const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length-1)[0].substr(1);
+  res.push(string);
+  return res;
+}
+</pre><p><strong>stringifyNumbers Solution</strong></p><pre class="prettyprint linenums">function stringifyNumbers(obj) {
+  var newObj = {};
+  for (var key in obj) {
+    if (typeof obj[key] === 'number') {
+      newObj[key] = obj[key].toString();
+    } else if (typeof obj[key] === 'object' &amp;&amp; !Array.isArray(obj[key])) {
+      newObj[key] = stringifyNumbers(obj[key]);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}</pre><p><strong>collectStrings Solution: Helper Method Recursion Version</strong></p><pre class="prettyprint linenums">function collectStrings(obj) {
+    var stringsArr = [];
+
+    function gatherStrings(o) {
+        for(var key in o) {
+            if(typeof o[key] === 'string') {
+                stringsArr.push(o[key]);
+            }
+            else if(typeof o[key] === 'object') {
+                return gatherStrings(o[key]);
+            }
+        }
+    }
+
+    gatherStrings(obj);
+
+    return stringsArr;
+}</pre><p><strong>collectStrings Solution: Pure Recursion Version</strong></p><pre class="prettyprint linenums">function collectStrings(obj) {
+    var stringsArr = [];
+    for(var key in obj) {
+        if(typeof obj[key] === 'string') {
+            stringsArr.push(obj[key]);
+        }
+        else if(typeof obj[key] === 'object') {
+            stringsArr = stringsArr.concat(collectStrings(obj[key]));
+        }
+    }
+
+    return stringsArr;
+}
+</pre>

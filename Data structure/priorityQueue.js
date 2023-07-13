@@ -51,7 +51,7 @@ class ProrityQueue {
             }
 
             if (righChildIdx < length) {
-                righChildIdx = this.val[leftChildIdx]
+                righChildIdx = this.val[righChildIdx]
                 if (
                     (swap === null && rightChild.priority > element.priority) ||
                     (swap !== null && rightChild.priority > leftChild.priority)

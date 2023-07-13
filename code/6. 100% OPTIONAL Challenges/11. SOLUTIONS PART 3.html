@@ -1,0 +1,57 @@
+<h4>maxSubArray Solution</h4><pre class="prettyprint linenums">function maxSubarraySum(arr, num){
+    if (arr.length &lt; num) return null;
+
+    let total = 0;
+    for (let i=0; i&lt;num; i++){
+       total += arr[i];
+    }
+    let currentTotal = total;
+    for (let i = num; i &lt; arr.length; i++) {
+       currentTotal += arr[i] - arr[i-num];
+       total = Math.max(total, currentTotal);
+    }
+    return total;
+}</pre><h4>minSubArrayLen Solution</h4><pre class="prettyprint linenums">function minSubArrayLen(nums, sum) {
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let minLen = Infinity;
+
+  while (start &lt; nums.length) {
+    // if current window doesn't add up to the given sum then 
+		// move the window to right
+    if(total &lt; sum &amp;&amp; end &lt; nums.length){
+      total += nums[end];
+			end++;
+    }
+    // if current window adds up to at least the sum given then
+		// we can shrink the window 
+    else if(total &gt;= sum){
+      minLen = Math.min(minLen, end-start);
+			total -= nums[start];
+			start++;
+    } 
+    // current total less than required total but we reach the end, need this or else we'll be in an infinite loop 
+    else {
+      break;
+    }
+  }
+
+  return minLen === Infinity ? 0 : minLen;
+}</pre><h4>findLongestSubstring Solution</h4><pre class="prettyprint linenums">function findLongestSubstring(str) {
+  let longest = 0;
+  let seen = {};
+  let start = 0;
+
+  for (let i = 0; i &lt; str.length; i++) {
+    let char = str[i];
+    if (seen[char]) {
+      start = Math.max(start, seen[char]);
+    }
+    // index - beginning of substring + 1 (to include current in count)
+    longest = Math.max(longest, i - start + 1);
+    // store the index of the next char so as to not double count
+    seen[char] = i + 1;
+  }
+  return longest;
+}</pre>

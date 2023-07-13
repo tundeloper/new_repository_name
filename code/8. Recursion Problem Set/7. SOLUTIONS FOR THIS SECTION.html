@@ -1,0 +1,19 @@
+<h4>POWER SOLUTION</h4><pre class="prettyprint linenums">function power(base, exponent){
+    if(exponent === 0) return 1;
+    return base * power(base,exponent-1);
+}</pre><h4>FACTORIAL SOLUTION</h4><pre class="prettyprint linenums">function factorial(x){
+   if (x &lt; 0 ) return 0;
+   if (x &lt;= 1 ) return 1;
+   return x * factorial(x-1);
+}</pre><h4>PRODUCT OF ARRAY SOLUTION</h4><pre class="prettyprint linenums">function productOfArray(arr) {
+    if(arr.length === 0) {
+        return 1;
+    }
+    return arr[0] * productOfArray(arr.slice(1));
+}</pre><h4>RECURSIVE RANGE SOLUTION</h4><pre class="prettyprint linenums">function recursiveRange(x){
+   if (x === 0 ) return 0;
+   return x + recursiveRange(x-1);
+}</pre><h4>FIBONACCI SOLUTION</h4><pre class="prettyprint linenums">function fib(n){
+    if (n &lt;= 2) return 1;
+    return fib(n-1) + fib(n-2);
+}</pre><p><br></p><p><br></p>
