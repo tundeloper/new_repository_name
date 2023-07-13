@@ -9,7 +9,8 @@ class PriorityQueue {
     }
 
     dequeue() {
-        this.values.shift()
+        const del = this.values.shift()
+        return del
     }
 
     sort() {
@@ -38,6 +39,7 @@ class WeightedGraph {
 
     Dijkstra(start, end) {
         const nodes = new PriorityQueue();
+        let path = [] // to return at end 
         const distances = [];
         const previous = {}
         let smallest;
@@ -56,16 +58,33 @@ class WeightedGraph {
         }
         // as long as there is something to visit 
         while (nodes.values.length) {
-            smallest = nodes.dequeue()
+            smallest = nodes.dequeue().val
             if (smallest === end) {
+                console.log(distances)
+                console.log(previous)
+                while (previous[smallest]) {
+                    path.push(smallest)
+                    smallest = previous[smallest]
+                }
                 //We are done
                 //Build up path to return at end
             }
             if (smallest || distances[smallest] !== Infinity) {
-                for (let neighbor in this.adjacencyList) {
-                    let nextNode;
-                    console.log(neighbor)
-                    console.log(this.adjacencyList)
+                for (let neighbor in this.adjacencyList[smallest]) {
+                    // Find neighboring node
+                    let nextNode = this.adjacencyList[smallest][neighbor]
+                    console.log(nextNode)
+                    // Calculate new distance to neighboring node
+                    let candidate = distances[smallest] + nextNode.weight
+                    let nextNeighbor = nextNode.node
+                    if (candidate < distances[nextNeighbor]) {
+                        //Updating new smallest distance to neighbor
+                        distances[nextNeighbor] = candidate;
+                        //Updating previous - How we gpt tp neighbor
+                        previous[nextNeighbor] = smallest;
+                        //enqueue with priority queue with new priority
+                        nodes.enqueue(nextNeighbor, candidate)
+                    }
                 }
             }
         }
